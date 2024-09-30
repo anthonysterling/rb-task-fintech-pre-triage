@@ -1,5 +1,5 @@
 api_version: v1
-definition:
+spec:
   llm_model: gpt-4o
   output_format:
     summary: str
