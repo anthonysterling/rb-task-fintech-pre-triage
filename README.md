@@ -1,3 +1,3 @@
-# rb-task-fintech-pre-triage
+# rb-task-pull-request-summary
 
- A task to pre-triage user onboarding before IDV.
+Generates a summary for a given Pull Request using Rightbrain AI
