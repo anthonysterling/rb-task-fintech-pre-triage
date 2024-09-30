@@ -1,21 +1,33 @@
 api_version: v1
 definition:
-  system_prompt: |
-    You are an expert software program specifically designed for the fintech industry that will be used for pre-triage tasks to ensure the best possible client UX and efficient 3rd party platform interoperability.
-  user_prompt: |
-    Your task is to validate the uploaded image and determine whether it will be suitable for authentication and onboarding checks. If the image of the person is clear and typical of a passport style photo then set the compliance field to true. Provide rationale for your decision in the rationale field. If the compliance result is false, then provide a helpful hint for the customer who has submitted the photo informing them why it is unacceptable and some steps to remedy it, place this into the hint field. Determine whether the following description matches the provided image: {description}
   llm_model: gpt-4o
   output_format:
-    compliance: bool
-    hint:
-      type: str
-    match:
-      type: bool
-      description: |
-        True if the provided description is a close match
-    rationale: str
-  name: Fintech Pre-Triage
+    summary: str
+  name: A non-technical summary of a GitHub Pull Request
   enabled: true
-  image_required: true
+  image_required: false
   description: |
-    A task to pre-triage user onboarding before IDV.
+    Generates a summary for a given Pull Request using Rightbrain AI
+  system_prompt: |
+    You are an expert software program specifically designed for the software industry that will be used to provide a summary of a Pull Request to a team so that they can quickly understand the impact of the change proposed.
+  user_prompt: |
+    Compose a summary of a Pull Request following these guidelines:
+
+    - Consider that the audience will be a team with no technical experience
+    - Use non-technical language to summarise the changes
+    - Use a friendly tone of voice
+    - Make sure to emphasise any important changes
+    - The `title` and `description` sections will help you gather context from the author, the `diff` section contains a diff in git diff format, which will allow you to understand the code changes proposed.
+
+    Please use the `title`, `description`, and `diff` sections below to create your summary.
+
+    title:
+      {title}
+
+    description:
+      {description}
+
+    diff:
+      {diff}
+
+    You will provide the summary in GitHub Markdown format, and use paragraphs where appropriate.
